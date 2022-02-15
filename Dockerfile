@@ -1,4 +1,4 @@
-FROM tomcat
+FROM java
  USER root
- COPY DevOpsPipeline.war /usr/local/tomcat/webapps/
- CMD ["catalina.sh","run"] 
+ COPY artifacts/*jar /usr/local/tomcat/webapps/
+ CMD ["java","-jar","/usr/local/tomcat/webapps/yannick.jar"] 
