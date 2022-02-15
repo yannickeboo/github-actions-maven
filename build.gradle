@@ -1,0 +1,46 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'com.google.cloud.tools.jib' version '1.8.0'
+	id 'java'
+    id 'application'
+}
+
+mainClassName = "src/main/java/com/example/springboot/Application"
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+jib {
+    allowInsecureRegistries = true
+    from.image = 'gcr.io/distroless/java:8'
+    to {
+      //image = 'localhost:5000/spring-boot-app'
+      image = '172.16.0.12:32201/spring-boot-app'
+      auth {
+        username = 'admin'
+        password = 'PassWord1'
+      }
+    }
+}
+
+dependencies {
+	// tag::actuator[]
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	// end::actuator[]
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// tag::tests[]
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	// end::tests[]
+}
+
+test {
+	useJUnitPlatform()
+}
