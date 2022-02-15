@@ -1,5 +1,4 @@
-FROM openjdk:8-jdk-alpine
-
-COPY *.jar /maven/
-WORKDIR /maven/
-ENTRYPOINT ["java","-jar","/maven/*.jar"]
+FROM tomcat
+ USER root
+ COPY DevOpsPipeline.war /usr/local/tomcat/webapps/
+ CMD ["catalina.sh","run"] 
