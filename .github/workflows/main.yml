@@ -46,7 +46,7 @@ jobs:
         distribution: 'adopt'
     - name: Testing
       run: mvn --batch-mode --update-snapshots verify
-    - name: Build and push the docker image with version
+    - name: Build and push the docker image with version!
       id: docker_build
       uses: docker/build-push-action@v2
       with:
