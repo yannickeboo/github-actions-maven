@@ -46,7 +46,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: yannickeboo/test2:version:${{github.run_number}}
+        tags: yannickeboo/test2:version-${{github.run_number}}
     - name: Build and Push the docker image not version
       id: docker_build2
       uses: docker/build-push-action@v2
