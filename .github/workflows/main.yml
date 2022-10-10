@@ -39,7 +39,13 @@ jobs:
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
     - name: Download artifact
       uses: actions/download-artifact@v2
-
+    - name: testing 
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    - name: Testing
+      run: mvn --batch-mode --update-snapshots verify
     - name: Build and push the docker image with version
       id: docker_build
       uses: docker/build-push-action@v2
